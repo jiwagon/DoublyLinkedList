@@ -1,11 +1,11 @@
 public class Node<T> {
-    public T album;
+    Album album;
     T data;
     Node<T> next;
     Node<T> prev;
 
-    public Node(T data) {
-        this.data = data;
+    public Node(Album album1) {
+        this.album = album1;
         this.next = null;
         this.prev = null;
     }

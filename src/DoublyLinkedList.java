@@ -1,4 +1,4 @@
-public class DoublyLinkedList {
+public class DoublyLinkedList<Album extends Comparable> {
 
     Node<Album> head;
     Node<Album> prev;

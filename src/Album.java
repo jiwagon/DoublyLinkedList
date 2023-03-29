@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class Album {
     public int albumID;
     public String albumTitle;

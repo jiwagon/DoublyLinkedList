@@ -4,8 +4,8 @@ public class Node<T> {
     Node<T> next;
     Node<T> prev;
 
-    public Node(Album album1) {
-        this.album = album1;
+    public Node(Album data) {
+        this.album = data;
         this.next = null;
         this.prev = null;
     }

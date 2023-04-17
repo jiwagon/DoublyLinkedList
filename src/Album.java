@@ -1,65 +1,79 @@
 import java.util.ArrayList;
 
 public class Album implements Comparable<Album>{
-    public int albumID;
-    public String albumTitle;
-    public int numSongs;
-    ArrayList<String> artistNames;
+    Integer ID;
+    ArrayList<String> artistName;
+    String title;
+    Integer numSongs;
 
-    public Album(int albumID, String albumTitle, int numSongs){
-        this.albumID = albumID;
-        this.albumTitle = albumTitle;
-        this.numSongs = numSongs;
-        this.artistNames = new ArrayList<String>();
+    public Album(int id, ArrayList<String> name, String title, int num){
+        this.ID = id;
+        this.artistName = name;
+        this.title = title;
+        this.numSongs = num;
     }
 
-    public Album(int id, String title, int numSongs, ArrayList<String> artist) {
-        this.albumID = id;
-        this.albumTitle = title;
-        this.numSongs = numSongs;
-        this.artistNames = artist;
+    public int getID(){
+        return ID;
     }
 
-    // Add artist name to artistNames arraylist
-    public void addArtists(String artistName) {
+    public void setID(int id){
+        this.ID = id;
+    }
 
-        this.artistNames. add(artistName);
+    public ArrayList<String> getName(){
+        return artistName;
+    }
+
+    public void setName(ArrayList<String> name){
+        this.artistName = name;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setID(String title){
+        this.title = title;
+    }
+
+    public int getNumSong(){
+        return numSongs;
+    }
+
+    public void setNumSong(int num){
+        this.numSongs = num;
+    }
+
+    public String getNameString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i< artistName.size()-1; i++){
+            stringBuilder.append(String.format("%s, ",artistName.get(i)));
+        }
+        stringBuilder.append(String.format("%s",artistName.get(artistName.size()-1)));
+        return stringBuilder.toString();
     }
 
     @Override
-    public int compareTo(Album album2) {
-        if (this.numSongs == album2.numSongs)
-            return 0;
-        else if (this.numSongs > album2.numSongs) {
+    public int compareTo(Album o) {
+        if(this.numSongs > o.numSongs){
             return 1;
         }
-        else {
+        else if(this.numSongs == o.numSongs){
+            return 0;
+        }
+        else{
             return -1;
         }
     }
 
-//    public String getNameString(){
-//        StringBuilder stb = new StringBuilder();
-//        for(int i = 0; i< artistNames.size()-1; i++){
-//            stb.append(String.format("%s, ",artistNames.get(i)));
-//        }
-//        stb.append(String.format("%s",artistNames.get(artistNames.size()-1)));
-//        return stb.toString();
-//    }
-
+    //return ID: NUM_SONGS -- [ARTISTS NAMES]
     @Override
-    public String toString() {
-        StringBuilder stb = new StringBuilder();
-        stb = stb.append("Album ID: " + this.albumID);
-        stb = stb.append("/nNumber of Songs: " + this.numSongs);
-        stb = stb.append("/nArtist Names: ");
-
-        if (artistNames.size() > 0) {
-            stb = stb.append(artistNames.toString());
-        }
-        else stb = stb.append("Artist Name Not Added.");
-        return stb.toString();
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(" %d: %d -- [%s] ",this.getID(),this.getNumSong(),this.getNameString()));
+        return stringBuilder.toString();
     }
+
+
 }
-
-

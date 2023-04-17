@@ -48,6 +48,13 @@ public class DoublyLinkedList<T> {
         if (position > numNode || position < 0) {
             throw IAe;
         }
+
+        // Condition: if the position requested is equal to the total node number
+        // Add node to the end of the list
+        else if (position == numNode) {
+            append(data);
+        }
+
         else {
             // Condition: if the list is null
             // Start a list
@@ -58,6 +65,7 @@ public class DoublyLinkedList<T> {
                 this.tail = toInsertNode;
                 numNode++;
             }
+
             // Condition: if requested position is 0 and the list is not empty
             // Add node to the head of the list
             else if (position == 0 && this.head != null) {
@@ -69,41 +77,26 @@ public class DoublyLinkedList<T> {
 
             // Condition: if requested position is smaller than total node number
             // Add node to the middle of the list
-            else if (position < numNode && this.head != null) {
-                int count = 0; // or int count = 0
-                Node<T> currentNode = this.head;
-                //Node<T> after_node = this.head.next;
-                while (count < position && currentNode.next != null) {
-                    currentNode = currentNode.next;
-                    count++;
+            else if (position < numNode && numNode != 0) {
+                int count = 1;
+                Node<T> pre_node = this.head;
+                Node<T> after_node = this.head.next;
+                while (count < position) {
+                    pre_node = after_node;
+                    after_node = after_node.next;
                 }
-                if ((count + 1) != position) {
-                    return this.append(data);
-                }
-                else if (count != position) {
-                    throw IAe;
-                } else {
-                    toInsertNode.next = currentNode;
-                    toInsertNode.prev = currentNode.prev;
-                    currentNode.prev.next = toInsertNode;
-                    currentNode.prev = toInsertNode;
-                    numNode++;
-                }
-            }
-            else {
-                int pos = 0;
-                Node<T> current = this.head;
-                while (pos < position && current.next != null) {
-                    current = current.next;
-                    pos++;
-                }
-//                if ((pos+1)==position) {
-//                    return this.append(data);
-//                }
+                pre_node.next = toInsertNode;
+                pre_node.next.prev = pre_node;
+                pre_node.next.next = after_node;
+                pre_node.next.next.prev = toInsertNode;
+                numNode++;
             }
         }
         // return the inserted node
         return toInsertNode;
     }
 
+    public int getNumNode(){
+        return numNode;
+    }
 }

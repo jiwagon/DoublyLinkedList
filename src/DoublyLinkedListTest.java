@@ -49,14 +49,14 @@ class DoublyLinkedListTest {
         femaleArtists.add("Taylor Swift");
         femaleArtists.add("Lady Gaga");
         maleArtists.add("Harry Styles");
-        maleArtists.add("More Life");
+        maleArtists.add("Drake");
 
         Album album1 = new Album(1, femaleArtists,"Born This Way", 10);
         Album album2 = new Album(2, femaleArtists,"Midnights", 20);
         Album album3 = new Album(3, femaleArtists, "Love Story",30);
         Album album4 = new Album(4, maleArtists, "Harry's House",45);
         Album album5 = new Album(5, maleArtists, "More Life",50);
-        Album album6 = new Album(6, femaleArtists, "Sour",50);
+        Album album6 = new Album(6, femaleArtists, "Sour",60);
 
         //Create a list of nodes
         dll1.append(album1);
@@ -77,6 +77,8 @@ class DoublyLinkedListTest {
         dll2.insert(2,album3);
         dll2.insert(4,album5);
         dll2.insert(5,album6);
+        dll2.insert(-10,album6);
+        //dll2.insert(,album6);
 
         System.out.println(dll2);
     }

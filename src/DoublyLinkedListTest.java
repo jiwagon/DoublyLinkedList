@@ -1,5 +1,6 @@
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -39,5 +40,44 @@ class DoublyLinkedListTest {
     }
 
 
+    @Test
+    void insert() {
+        DoublyLinkedList dll1 = new DoublyLinkedList();
 
+        ArrayList<String> femaleArtists = new ArrayList<>();
+        ArrayList<String> maleArtists = new ArrayList<>();
+        femaleArtists.add("Taylor Swift");
+        femaleArtists.add("Lady Gaga");
+        maleArtists.add("Harry Styles");
+        maleArtists.add("More Life");
+
+        Album album1 = new Album(1, femaleArtists,"Born This Way", 10);
+        Album album2 = new Album(2, femaleArtists,"Midnights", 20);
+        Album album3 = new Album(3, femaleArtists, "Love Story",30);
+        Album album4 = new Album(4, maleArtists, "Harry's House",45);
+        Album album5 = new Album(5, maleArtists, "More Life",50);
+        Album album6 = new Album(6, femaleArtists, "Sour",50);
+
+        //Create a list of nodes
+        dll1.append(album1);
+        dll1.append(album3);
+        dll1.append(album5);
+
+        dll1.insert(1,album2);
+        dll1.insert(3,album4);
+
+        System.out.println(dll1);
+
+        DoublyLinkedList dll2 = new DoublyLinkedList();
+
+        dll2.append(album2);
+        dll2.append(album4);
+
+        dll2.insert(0,album1);
+        dll2.insert(2,album3);
+        dll2.insert(4,album5);
+        dll2.insert(5,album6);
+
+        System.out.println(dll2);
+    }
 }

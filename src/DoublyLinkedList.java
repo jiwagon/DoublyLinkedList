@@ -34,70 +34,64 @@ public class DoublyLinkedList<T> {
     public Node<T> insert(int position, Album data) {
         Node<T> toInsertNode = new Node<T>(data);
 
-        // throw an IllegalArgumentException if location is out of the bounds of the list
-        IllegalArgumentException IAe = new IllegalArgumentException
-                ("Position Out of Bounds of Doubly Linked List");
+        try {
+            // Condition: if the position requested is equal to the total node number,
+            // meaning the end of the list
+            if (position == numNode) {
 
-        // Condition: if the list is null but a node position requested
-        if (head == null && position != 0) {
-            throw IAe;
-        }
-
-        // Condition: if the position requested is higher than the total node number
-        // Condition: if the position requested is less than 0
-        if (position > numNode || position < 0) {
-            throw IAe;
-        }
-
-        // Condition: if the position requested is equal to the total node number
-        // Add node to the end of the list
-        else if (position == numNode) {
-            append(data);
-        }
-
-        else {
-            // Condition: if the list is null
-            // Start a list
-            if (this.head == null && position == 0) {
-                //toInsert.next = head;
-                //head.prev = toInsert;
-                this.head = toInsertNode;
-                this.tail = toInsertNode;
+                // Start a node, if list is null
+                if (this.head == null) {
+                    this.head = toInsertNode;
+                    this.tail = toInsertNode;
+                }
+                // Add node to the end of list, if list is not null
+                else {
+                    this.tail.next = toInsertNode;
+                    toInsertNode.prev = this.tail;
+                    this.tail = toInsertNode;
+                }
                 numNode++;
             }
 
-            // Condition: if requested position is 0 and the list is not empty
-            // Add node to the head of the list
-            else if (position == 0 && this.head != null) {
-                this.head.prev = toInsertNode;
-                toInsertNode.next = this.head;
-                this.head = toInsertNode;
+            // Condition: if the position requested is the head of the list.
+            else if (position == 0) {
+
+                // Start a node, if list is empty
+                if (this.head == null) {
+                    this.head = toInsertNode;
+                    this.tail = toInsertNode;
+                }
+                // Add node to the head of list, if list is not empty
+                else {
+                    this.head.prev = toInsertNode;
+                    toInsertNode.next = this.head;
+                    this.head = toInsertNode;
+                }
                 numNode++;
             }
-
             // Condition: if requested position is smaller than total node number
             // Add node to the middle of the list
             else if (position < numNode && numNode != 0) {
-                int count = 1;
-                Node<T> pre_node = this.head;
+                int count = 0;
+                // Initialize a new head pointer for the list
+                Node<T> current = this.head;
                 Node<T> after_node = this.head.next;
                 while (count < position) {
-                    pre_node = after_node;
-                    after_node = after_node.next;
+                    current = current.next;
+                    count++;
                 }
-                pre_node.next = toInsertNode;
-                pre_node.next.prev = pre_node;
-                pre_node.next.next = after_node;
-                pre_node.next.next.prev = toInsertNode;
+                toInsertNode.prev = current.prev;
+                toInsertNode.next = current;
+                current.prev.next = toInsertNode;
+                current.prev = toInsertNode;
                 numNode++;
             }
         }
-        // return the inserted node
+        // throw an IllegalArgumentException if location is out of the bounds of the list
+        catch (IllegalArgumentException e) {
+            System.out.println("Location is out of the bounds of the list");
+        }
         return toInsertNode;
-    }
-
-    public int getNumNode(){
-        return numNode;
     }
 
     @Override

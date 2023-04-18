@@ -37,6 +37,9 @@ public class DoublyLinkedList<T> {
         try {
             // Condition: if the position requested is equal to the total node number,
             // meaning the end of the list
+            if (position < 0 || position > numNode) {
+                throw new IllegalArgumentException("Position requested is out of the bounds of the list");
+            }
             if (position == numNode) {
 
                 // Start a node, if list is null
@@ -86,10 +89,9 @@ public class DoublyLinkedList<T> {
                 current.prev = toInsertNode;
                 numNode++;
             }
-        }
-        // throw an IllegalArgumentException if location is out of the bounds of the list
-        catch (IllegalArgumentException e) {
-            System.out.println("Location is out of the bounds of the list");
+
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Position requested is out of the bounds of the list");
         }
         return toInsertNode;
     }

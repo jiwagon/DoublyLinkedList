@@ -57,6 +57,7 @@ class DoublyLinkedListTest {
         Album album4 = new Album(4, maleArtists, "Harry's House",45);
         Album album5 = new Album(5, maleArtists, "More Life",50);
         Album album6 = new Album(6, femaleArtists, "Sour",60);
+        Album album7 = new Album(7, femaleArtists, "Bitter",70);
 
         //Create a list of nodes
         dll1.append(album1);
@@ -66,6 +67,7 @@ class DoublyLinkedListTest {
         dll1.insert(1,album2);
         dll1.insert(3,album4);
 
+        System.out.println("dll1");
         System.out.println(dll1);
 
         DoublyLinkedList dll2 = new DoublyLinkedList();
@@ -77,9 +79,12 @@ class DoublyLinkedListTest {
         dll2.insert(2,album3);
         dll2.insert(4,album5);
         dll2.insert(5,album6);
-        dll2.insert(-10,album6);
-        //dll2.insert(,album6);
 
+        // to test try catch block
+        // dll2.insert(-10,album6);
+        // dll2.insert(100,album7);
+
+        System.out.println("dll2");
         System.out.println(dll2);
     }
 }

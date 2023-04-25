@@ -96,6 +96,56 @@ public class DoublyLinkedList<T> {
         return toInsertNode;
     }
 
+    public Node<T> delete(int location) {
+
+        // Throw an IllegalArgumentException if it doesn't exist
+        if (location < 0 || location >= numNode) {
+            throw new IllegalArgumentException("Position requested is out of the bounds of the list");
+        }
+
+        Node<T> deletedNode;
+
+        // Delete the item at that location (delete 0 deletes the head)
+        // Condition: if deleting the head node
+        if (location == 0) {
+            deletedNode = this.head;
+            this.head = this.head.next;
+            if (this.head != null) {
+                this.head.prev = null;
+            } else {
+                this.tail = null;
+            }
+        }
+
+        // Condition: if deleting the tail node
+        else if (location == numNode - 1) {
+            deletedNode = this.tail;
+            this.tail = this.tail.prev;
+            if (this.tail != null) {
+                this.tail.next = null;
+            } else {
+                this.head = null;
+            }
+        }
+
+        // Condition: if deleting a node in the middle of the list
+        else {
+            int count = 0;
+            Node<T> current = this.head;
+            while (count < location) {
+                current = current.next;
+                count++;
+            }
+            deletedNode = current;
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+        }
+        numNode--;
+
+        // Return the deleted node
+        return deletedNode;
+    }
+
     @Override
     public String toString(){
         Node<T> toPrint = this.head;
@@ -104,11 +154,14 @@ public class DoublyLinkedList<T> {
 
         while(toPrint != null){
             stringBuilder.append(toPrint.data);
+            // String representation of the items separated by "->"
             stringBuilder.append("->");
             toPrint = toPrint.next;
         }
-
+        // String representation to terminate with "NULL"
         stringBuilder.append("NULL");
+
+        //return a string representations
         return stringBuilder.toString();
     }
 }

@@ -117,4 +117,8 @@ class DoublyLinkedListTest {
         System.out.println("dll3");
         System.out.println(dll3);
     }
+
+    @Test
+    void getIndex() {
+    }
 }

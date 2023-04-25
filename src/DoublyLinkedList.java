@@ -146,6 +146,19 @@ public class DoublyLinkedList<T> {
         return deletedNode;
     }
 
+    public int getIndex(T data) {
+        Node<T> current = this.head;
+        int index = 0;
+        while (current != null) {
+            if (current.getClass().equals(data)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
+
     @Override
     public String toString(){
         Node<T> toPrint = this.head;

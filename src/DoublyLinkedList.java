@@ -146,16 +146,36 @@ public class DoublyLinkedList<T> {
         return deletedNode;
     }
 
-    public int getIndex(T data) {
+//    public int getIndex(T data) {
+//        Node<T> current = this.head;
+//        int index = 0;
+//        while (current != null) {
+//            if (current.getClass().equals(data)) {
+//                return index;
+//            }
+//            current = current.next;
+//            index++;
+//        }
+//        return -1;
+//    }
+
+    public int getIndex(Album data){
         Node<T> current = this.head;
         int index = 0;
-        while (current != null) {
-            if (current.getClass().equals(data)) {
+        while(current != null){
+            if(current.data.getID() == data.getID() &&
+                    current.data.getTitle().equals(data.getTitle()) &&
+                    current.data.getNumSong() == data.getNumSong() &&
+                    current.data.getName().equals(data.getName())){
+                // Return the first index of the item
                 return index;
             }
-            current = current.next;
-            index++;
+            else {
+                current = current.next;
+                index++;
+            }
         }
+        // Return -1 if it isn't in the list
         return -1;
     }
 

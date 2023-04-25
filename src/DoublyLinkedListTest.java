@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 class DoublyLinkedListTest {
 
-
     @org.junit.jupiter.api.Test
     void append() {
         DoublyLinkedList dll = new DoublyLinkedList();
@@ -140,17 +139,20 @@ class DoublyLinkedListTest {
         dll4.insert(1, album2);
         dll4.insert(2, album3);
         dll4.insert(3, album4);
+
+        // Get index of items that exists in the list
+        int index1 = dll4.getIndex(album1);
+        System.out.println("Index " + album1 + " = " + index1);
+
+        int index2 = dll4.getIndex(album2);
+        System.out.println("Index " + album2 + " = " + index2);
+
+        // Get index of an item that does not exist in the list
+        int index3 = dll4.getIndex(album5);
+        System.out.println("Index " + album5 + " = " + index3);
     }
 
     /**
-     * // Test case 1: Get index of an item that exists in the list
-     * int index = doublyLinkedList.getIndex("bar");
-     * System.out.println("Index of 'bar': " + index); // Output: Index of 'bar': 1
-     *
-     * // Test case 2: Get index of an item that does not exist in the list
-     * index = doublyLinkedList.getIndex("xyz");
-     * System.out.println("Index of 'xyz': " + index); // Output: Index of 'xyz': -1
-     *
      * // Test case 3: Get index of an item in an empty list
      * DoublyLinkedList<Integer> emptyList = new DoublyLinkedList<>();
      * index = emptyList.getIndex(10);

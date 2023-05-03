@@ -82,9 +82,9 @@ class DoublyLinkedListTest {
 //        dll2.insert(5,album6);
 //        System.out.println(dll2);
 
-        // to test try catch block
-        // dll2.insert(-10,album6);
-        // dll2.insert(100,album7);
+//        to test try catch block
+//        dll2.insert(-10,album6);
+//        dll2.insert(100,album7);
     }
 
     @Test
@@ -164,7 +164,6 @@ class DoublyLinkedListTest {
 
     @Test
     void shuffle() {
-        DoublyLinkedList dll = new DoublyLinkedList();
         ArrayList<String> artists = new ArrayList<>();
 
         artists.add("Taylor Swift");
@@ -230,7 +229,7 @@ class DoublyLinkedListTest {
         dll2.append(album5);
         dll2.append(album6);
 
-        Node<Album> node1 = new Node<Album>(album2);
+        Node<Album> node1 = new Node<>(album2);
         assertEquals(dll2.toString(),dll.partition(node1).toString());
         //System.out.println(dll2);
 
@@ -239,7 +238,7 @@ class DoublyLinkedListTest {
         dll3.append(album5);
         dll3.append(album6);
 
-        Node<Album> node2= new Node<Album>(album4);
+        Node<Album> node2= new Node<>(album4);
         assertEquals(dll3.toString(),dll.partition(node2).toString());
         System.out.println(dll3);
     }

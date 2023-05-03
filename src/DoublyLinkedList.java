@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class DoublyLinkedList<T> {
 
     Node<T> head;
@@ -146,19 +149,6 @@ public class DoublyLinkedList<T> {
         return deletedNode;
     }
 
-//    public int getIndex(T data) {
-//        Node<T> current = this.head;
-//        int index = 0;
-//        while (current != null) {
-//            if (current.getClass().equals(data)) {
-//                return index;
-//            }
-//            current = current.next;
-//            index++;
-//        }
-//        return -1;
-//    }
-
     public int getIndex(Album data){
         Node<T> current = this.head;
         int index = 0;
@@ -196,5 +186,56 @@ public class DoublyLinkedList<T> {
 
         //return a string representations
         return stringBuilder.toString();
+    }
+
+    // Shuffle method to shuffle the doubly linked list
+    // Return the head of a shuffled list ?
+    // Shuffling should take a list 1->2->3->4->5->6->NULL and return 2->1->4->3->6->5->NULL
+    public Node<Album> shuffle(){
+        //before shuffle the list, divide the original list into half by odd and even index
+        DoublyLinkedList oddList = new DoublyLinkedList();
+        DoublyLinkedList evenList = new DoublyLinkedList();
+        Node<T> pointer = new Node<T>(null);
+        pointer = this.head;
+        int count = 0;
+        while(pointer != null){
+            if(count%2 == 0){
+                evenList.append(pointer.data);
+            }
+            else{
+                oddList.append(pointer.data);
+            }
+            count++;
+            pointer = pointer.next;
+        }
+        Node<T> pointer1 = new Node<T>(null);
+        Node<T> pointer2 = new Node<T>(null);
+        pointer1 = oddList.head;
+        pointer2 = evenList.head;
+        DoublyLinkedList result = new DoublyLinkedList();
+        while(pointer1 != null){
+            result.append(pointer1.data);
+            result.append(pointer2.data);
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next;
+        }
+        if(pointer2 != null){
+            result.append(pointer2.data);
+        }
+        //Return the head of a shuffled list
+        return result.head;
+    }
+
+    // Return a new list that contains everything in the list that is greater than or equal to the data given to it
+    public DoublyLinkedList partition(Album data) {
+        DoublyLinkedList newList = new DoublyLinkedList();
+        Node current = head;
+        while (current != null) {
+            if (current.data.compareTo(data) >= 0) {
+                newList.append(current.data);
+            }
+            current = current.next;
+        }
+        return newList;
     }
 }

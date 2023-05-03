@@ -152,6 +152,64 @@ class DoublyLinkedListTest {
         System.out.println("Index " + album5 + " = " + index3);
     }
 
+    @Test
+    void shuffle() {
+        // Odd list
+        DoublyLinkedList dll = new DoublyLinkedList();
+        // Even list
+        DoublyLinkedList dll2 = new DoublyLinkedList();
+        ArrayList<String> artists = new ArrayList<>();
+
+        artists.add("Taylor Swift");
+        artists.add("Lady Gaga");
+        artists.add("Harry Styles");
+        artists.add("Drake");
+
+        Album album1 = new Album(1, artists,"Born This Way", 10);
+        Album album2 = new Album(2, artists,"Midnights", 20);
+        Album album3 = new Album(3, artists, "Love Story",30);
+        Album album4 = new Album(4, artists, "Harry's House",45);
+        Album album5 = new Album(5, artists, "More Life",50);
+        Album album6 = new Album(6, artists, "Sour",60);
+
+        //when the number of node is odd
+        dll.append(album1);
+        dll.append(album2);
+        dll.append(album3);
+        dll.append(album4);
+        dll.append(album5);
+        dll.append(album6);
+
+        Node<Album> pointer = dll.shuffle();
+
+        while(pointer.next != null){
+            System.out.println(pointer.data);
+            pointer = pointer.next;
+        }
+        System.out.println(pointer.data);
+
+        //System.out.println(dl.toString());
+        assertEquals(album2,dll.shuffle().data);
+        //System.out.println(dl.shuffle());
+
+        //when the number of node is even
+        dll2.append(album1);
+        dll2.append(album2);
+        dll2.append(album3);
+        dll2.append(album4);
+        dll2.append(album5);
+        dll2.append(album6);
+        assertEquals(album2,dll2.shuffle().data);
+    }
+
+    @Test
+    void partition() {
+    }
+
+    @Test
+    void testPartition() {
+    }
+
     /**
      * // Test case 3: Get index of an item in an empty list
      * DoublyLinkedList<Integer> emptyList = new DoublyLinkedList<>();

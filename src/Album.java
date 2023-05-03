@@ -70,9 +70,7 @@ public class Album implements Comparable<Album>{
     //return ID: NUM_SONGS -- [ARTISTS NAMES]
     @Override
     public String toString(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(" %d: %d -- [%s] ",this.getID(),this.getNumSong(),this.getNameString()));
-        return stringBuilder.toString();
+        return String.format(" %d: %d -- [%s] ", this.getID(), this.getNumSong(), this.getNameString());
     }
 
 }

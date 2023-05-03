@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class DoublyLinkedList<T> {
 
     Node<T> head;
@@ -172,7 +169,6 @@ public class DoublyLinkedList<T> {
     @Override
     public String toString(){
         Node<T> toPrint = this.head;
-
         StringBuilder stringBuilder = new StringBuilder();
 
         while(toPrint != null){
@@ -195,8 +191,7 @@ public class DoublyLinkedList<T> {
         //before shuffle the list, divide the original list into half by odd and even index
         DoublyLinkedList oddList = new DoublyLinkedList();
         DoublyLinkedList evenList = new DoublyLinkedList();
-        Node<T> pointer = new Node<T>(null);
-        pointer = this.head;
+        Node<T> pointer = this.head;
         int count = 0;
         while(pointer != null){
             if(count%2 == 0){
@@ -208,10 +203,8 @@ public class DoublyLinkedList<T> {
             count++;
             pointer = pointer.next;
         }
-        Node<T> pointer1 = new Node<T>(null);
-        Node<T> pointer2 = new Node<T>(null);
-        pointer1 = oddList.head;
-        pointer2 = evenList.head;
+        Node<T> pointer1 = oddList.head;
+        Node<T> pointer2 = evenList.head;
         DoublyLinkedList result = new DoublyLinkedList();
         while(pointer1 != null){
             result.append(pointer1.data);
@@ -222,20 +215,29 @@ public class DoublyLinkedList<T> {
         if(pointer2 != null){
             result.append(pointer2.data);
         }
+        // Print the shuffled list
+        Node<T> current = result.head;
+        while (current != null) {
+            System.out.print(current.data.toString());
+            current = current.next;
+            System.out.print("->");
+        }
+        System.out.println("NULL");
+        System.out.print("\n");
         //Return the head of a shuffled list
         return result.head;
     }
 
     // Return a new list that contains everything in the list that is greater than or equal to the data given to it
-    public DoublyLinkedList partition(Album data) {
-        DoublyLinkedList newList = new DoublyLinkedList();
+    public DoublyLinkedList partition(Node<T> data) {
+        DoublyLinkedList newDll = new DoublyLinkedList();
         Node current = head;
         while (current != null) {
-            if (current.data.compareTo(data) >= 0) {
-                newList.append(current.data);
+            if (current.data.compareTo(data.data) >= 0) {
+                newDll.append(current.data);
             }
             current = current.next;
         }
-        return newList;
+        return newDll;
     }
 }
